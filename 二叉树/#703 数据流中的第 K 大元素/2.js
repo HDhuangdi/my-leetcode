@@ -1,4 +1,4 @@
-// 堆
+// 使用堆 heap
 
 class MinHeap {
   constructor(nums) {
@@ -98,22 +98,12 @@ var KthLargest = function (k, nums) {
   this.k = k;
   this.heap = new MinHeap(nums);
 };
+
 KthLargest.prototype.add = function (val) {
   this.heap.add(val);
 
   while (this.heap.getSize() > this.k) {
     this.heap.pop();
   }
-
-  console.log(this.heap.peek(0));
   return this.heap.peek(0);
 };
-const kthLargest = new KthLargest(7, [-10, 1, 3, 1, 4, 10, 3, 9, 4, 5, 1]);
-kthLargest.add(3); // return 4
-kthLargest.add(2); // return 4
-kthLargest.add(3); // return 4
-kthLargest.add(1); // return 4
-kthLargest.add(2); // return 4
-kthLargest.add(4); // return 4
-kthLargest.add(5); // return 4
-kthLargest.add(5); // return 4
