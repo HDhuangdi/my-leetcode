@@ -86,6 +86,7 @@ const LDR = (root) => {
     result.push(node.val);
     if (node.right) {
       stack.push(node.right);
+      cur = node.right;
     }
   }
 
