@@ -1,11 +1,3 @@
-const tree = {
-  val: 2,
-  left: {
-    val: 1,
-  },
-  right: { val: 4, left: { val: 3 } },
-};
-
 var increasingBST = function (root) {
   let firstNode;
   let prevNode;
@@ -29,7 +21,5 @@ var increasingBST = function (root) {
     node.right = null;
     node.left = null;
   }
-  console.log(firstNode);
+  return firstNode;
 };
-
-increasingBST(tree);
