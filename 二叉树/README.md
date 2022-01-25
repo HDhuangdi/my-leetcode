@@ -1,8 +1,149 @@
+## 二叉树 BinaryTree 的遍历方法
+
+### 递归法(深度优先)
+
+#### 前序(DLR)
+
+```js
+const traverse = (root) => {
+  if (!root) return [];
+  let result = [root.val];
+  result = result.concat(traverse(root.left), traverse(root.right));
+
+  return result;
+};
+```
+
+#### 中序(LDR)
+
+```js
+const traverse = (root) => {
+  if (!root) return [];
+  let result = [];
+  result = result.concat(traverse(root.left));
+  result.push(root.val);
+  result = result.concat(traverse(root.right));
+
+  return result;
+};
+```
+
+#### 后序(LRD)
+
+```js
+const traverse = (root) => {
+  if (!root) return [];
+  let result = [];
+  result = result.concat(traverse(root.left), traverse(root.right));
+  result.push(root.val);
+
+  return result;
+};
+```
+
+### 迭代法(深度优先)
+
+深度优先的迭代法主要使用栈(stack)来实现
+
+#### 前序(DLR)
+
+```js
+const DLR = (root) => {
+  const stack = [root];
+  const result = [];
+
+  while (stack.length) {
+    const node = stack.pop();
+    result.push(node.val);
+    if (node.right) {
+      stack.push(node.right);
+    }
+    if (node.left) {
+      stack.push(node.left);
+    }
+  }
+
+  return result;
+};
+```
+
+#### 中序(LDR)
+
+每个节点都需要获取所有的左节点并推入栈
+
+```js
+const DLR = (root) => {
+  const stack = [root];
+  const result = [];
+  let cur = root;
+
+  while (stack.length) {
+    while (cur.left) {
+      stack.push(cur.left);
+      cur = cur.left;
+    }
+    const node = stack.pop();
+    result.push(node.val);
+    if (node.right) {
+      stack.push(node.right);
+    }
+  }
+
+  return result;
+};
+```
+
+#### 后序(LRD)
+
+```js
+const DLR = (root) => {
+  const stack = [root];
+  const result = [];
+
+  while (stack.length) {
+    const node = stack.pop();
+    result.unshift(node.val);
+    if (node.right) {
+      stack.push(node.right);
+    }
+    if (node.left) {
+      stack.push(node.left);
+    }
+  }
+
+  return result;
+};
+```
+
+### 迭代法(广度优先)
+
+广度优先算法主要使用队列(queue)来实现
+
+```js
+const BFS = (root) => {
+  const queue = [root];
+  const result = [];
+
+  while (queue.length) {
+    const node = queue.shift();
+    result.push(node.val);
+    node.left && queue.push(node.left);
+    node.right && queue.push(node.right);
+  }
+
+  return result;
+};
+```
+
+## 二叉搜索树 BinarySearchTree
+
+二叉搜索树的题目基本使用中序遍历,转换为有序数组后来解决
+
 ## 堆 Heap
 
 在最大堆中，父节点的值比每一个子节点的值都要大。在最小堆中，父节点的值比每一个子节点的值都要小。这就是所谓的“堆属性”，并且这个属性对堆中的每一个节点都成立。
 
-### 数组堆的父子节点取值公式
+### 堆的父子节点取值公式
 
 ```js
 parent(i) = floor((i - 1)/2)

@@ -1,35 +1,24 @@
 const tree = {
-  val: 2,
+  val: 10,
   left: {
-    val: 1,
+    val: 5,
+    left: { val: 1 },
   },
-  right: { val: 4, left: { val: 3 } },
+  right: { val: 15 },
 };
 
-var increasingBST = function (root) {
-  let firstNode;
-  let prevNode;
-  const stack = [root];
-  let cur = root;
-  while (stack.length) {
-    while (cur.left) {
-      cur = cur.left;
-      stack.push(cur);
-    }
-    const node = stack.pop();
-    if (!firstNode) firstNode = node;
-    if (prevNode) {
-      prevNode.right = node;
-    }
-    prevNode = node;
-    if (node.right) {
-      stack.push(node.right);
-      cur = node.right;
-    }
-    node.right = null;
-    node.left = null;
+const BFS = (root) => {
+  const queue = [root];
+  const result = [];
+
+  while (queue.length) {
+    const node = queue.shift();
+    result.push(node.val);
+    node.left && queue.push(node.left);
+    node.right && queue.push(node.right);
   }
-  console.log(firstNode);
+
+  return result;
 };
 
-increasingBST(tree);
+console.log(BFS(tree));
