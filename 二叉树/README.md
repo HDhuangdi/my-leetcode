@@ -5,7 +5,7 @@
 #### 前序(DLR)
 
 ```js
-const traverse = (root) => {
+const DLR = (root) => {
   if (!root) return [];
   let result = [root.val];
   result = result.concat(traverse(root.left), traverse(root.right));
@@ -17,7 +17,7 @@ const traverse = (root) => {
 #### 中序(LDR)
 
 ```js
-const traverse = (root) => {
+const LDR = (root) => {
   if (!root) return [];
   let result = [];
   result = result.concat(traverse(root.left));
@@ -31,7 +31,7 @@ const traverse = (root) => {
 #### 后序(LRD)
 
 ```js
-const traverse = (root) => {
+const LRD = (root) => {
   if (!root) return [];
   let result = [];
   result = result.concat(traverse(root.left), traverse(root.right));
@@ -72,7 +72,7 @@ const DLR = (root) => {
 每个节点都需要获取所有的左节点并推入栈
 
 ```js
-const DLR = (root) => {
+const LDR = (root) => {
   const stack = [root];
   const result = [];
   let cur = root;
@@ -96,7 +96,7 @@ const DLR = (root) => {
 #### 后序(LRD)
 
 ```js
-const DLR = (root) => {
+const LRD = (root) => {
   const stack = [root];
   const result = [];
 
