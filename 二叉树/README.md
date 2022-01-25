@@ -162,3 +162,101 @@ right(i)  = 2i + 2
 1. 将堆尾部的值赋值给堆首部
 2. 删除堆最后一个元素
 3. 将首部元素和左右节点中较小(小顶堆)/较大(大顶堆)比较,若大于(小顶堆)/小于(大顶堆)该值,交换位置,重复该步骤直到不满足条件为止
+
+### 实现了 add 和 pop 的堆
+
+```js
+class MinHeap {
+  constructor(nums) {
+    this.val = [];
+    for (const item of nums) {
+      this.add(item);
+    }
+  }
+
+  add(val) {
+    this.val.push(val);
+    let childIndex = this.val.length - 1;
+    while (childIndex > 0) {
+      let parentIndex = this.getParent(childIndex);
+      let child = this.val[childIndex];
+      let parent = this.val[parentIndex];
+      if (parent > child) {
+        this.val[childIndex] = parent;
+        this.val[parentIndex] = child;
+        childIndex = parentIndex;
+      } else {
+        break;
+      }
+    }
+  }
+
+  pop() {
+    // 首尾交换
+    this.val[0] = this.val[this.val.length - 1];
+    this.val.pop();
+    // 向下遍历
+    let curIndex = 0;
+    while (this.val[curIndex]) {
+      let cur = this.val[curIndex];
+      let leftChildIndex = this.getLeft(curIndex);
+      let rightChildIndex = this.getRight(curIndex);
+      let minIndex;
+      if (
+        this.val[leftChildIndex] === undefined &&
+        this.val[rightChildIndex] !== undefined
+      ) {
+        minIndex = rightChildIndex;
+      }
+      if (
+        this.val[rightChildIndex] === undefined &&
+        this.val[leftChildIndex] !== undefined
+      ) {
+        minIndex = leftChildIndex;
+      }
+      if (
+        this.val[rightChildIndex] !== undefined &&
+        this.val[leftChildIndex] !== undefined
+      ) {
+        minIndex =
+          this.val[leftChildIndex] > this.val[rightChildIndex]
+            ? rightChildIndex
+            : leftChildIndex;
+      }
+      if (
+        this.val[rightChildIndex] === undefined &&
+        this.val[leftChildIndex] === undefined
+      ) {
+        break;
+      }
+
+      if (this.val[minIndex] < cur) {
+        this.val[curIndex] = this.val[minIndex];
+        this.val[minIndex] = cur;
+        curIndex = minIndex;
+      } else {
+        break;
+      }
+    }
+  }
+
+  getParent(childIndex) {
+    return Math.floor((childIndex - 1) / 2);
+  }
+
+  getLeft(parentIndex) {
+    return 2 * parentIndex + 1;
+  }
+
+  getRight(parentIndex) {
+    return 2 * parentIndex + 2;
+  }
+
+  getSize() {
+    return this.val.length;
+  }
+  peek(index) {
+    return this.val[index];
+  }
+}
+```
