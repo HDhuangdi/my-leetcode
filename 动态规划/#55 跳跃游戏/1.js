@@ -4,9 +4,7 @@ var canJump = function (nums) {
     if (i > max) {
       return false;
     }
-    max = Math.max(max, nums[i]);
+    max = Math.max(max, nums[i] + i);
   }
   return true;
 };
-
-canJump([2, 3, 1, 1, 4]);
