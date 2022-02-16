@@ -1,10 +1,10 @@
+// 使用dp数组
+
 var canJump = function (nums) {
-  let max = 0;
+  let dp = [];
   for (let i = 0; i < nums.length; i++) {
-    if (i > max) {
-      return false;
-    }
-    max = Math.max(max, nums[i] + i);
+    if (dp[i - 1] < i) return false;
+    dp[i] = Math.max(dp[i - 1] || 0, nums[i] + i);
   }
   return true;
 };

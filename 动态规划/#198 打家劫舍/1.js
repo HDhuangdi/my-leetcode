@@ -1,14 +1,11 @@
+// 使用dp数组
+
 var rob = function (nums) {
-  let l1 = nums[0];
-  if (nums.length === 1) {
-    return l1;
+  if (nums.length === 1) return nums[0];
+  let dp = [0, nums[0]];
+
+  for (let i = 2; i <= nums.length; i++) {
+    dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]);
   }
-  let l2 = Math.max(nums[0], nums[1]);
-  let tmp;
-  for (let i = 2; i < nums.length; i++) {
-    tmp = l2;
-    l2 = Math.max(l2, l1 + nums[i]);
-    l1 = tmp;
-  }
-  return l2;
+  return dp[dp.length - 1];
 };

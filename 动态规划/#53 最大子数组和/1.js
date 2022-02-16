@@ -1,15 +1,16 @@
-var maxSubArray = function (nums) {
-  if (nums.length === 1) return nums[0];
-  let sum = 0;
-  let maxSum = nums[0];
+// 使用dp数组
 
-  for (let i = 0; i < nums.length; i++) {
+var maxSubArray = function (nums) {
+  let dp = [nums[0]];
+  let sum = nums[0];
+
+  for (let i = 1; i < nums.length; i++) {
     if (sum + nums[i] < nums[i]) {
       sum = nums[i];
     } else {
       sum = sum + nums[i];
     }
-    maxSum = Math.max(maxSum, sum);
+    dp[i] = Math.max(dp[i - 1], sum);
   }
-  return maxSum;
+  return dp[dp.length - 1];
 };
