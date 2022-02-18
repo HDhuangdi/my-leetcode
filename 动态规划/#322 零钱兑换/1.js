@@ -1,4 +1,4 @@
-// dp 数组法
+// dp table法
 
 var coinChange = function (coins, amount) {
   let dp = new Array(amount + 1).fill(Number.MAX_VALUE);

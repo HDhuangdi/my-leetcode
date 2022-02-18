@@ -1,5 +1,5 @@
 var coinChange = function (coins, amount) {
-  let dp = new Array(amount + 1).fill(Infinity); //初始化dp数组
+  let dp = new Array(amount + 1).fill(Infinity); //初始化dp table
   dp[0] = 0; //面额0只需要0个硬币兑换
 
   for (let i = 1; i <= amount; i++) {

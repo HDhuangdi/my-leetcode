@@ -1,4 +1,4 @@
-// 使用dp数组
+// 使用dp table
 
 var minCostClimbingStairs = function (cost) {
   let dp = [0, 0];

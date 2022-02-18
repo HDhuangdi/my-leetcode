@@ -1,4 +1,4 @@
-// dp 数组法
+// dp table法
 
 var jump = function (nums) {
   if (nums.length === 1) return 0;

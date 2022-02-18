@@ -1,4 +1,4 @@
-// 使用dp数组
+// 使用dp table
 
 var maxSubArray = function (nums) {
   let dp = [nums[0]];

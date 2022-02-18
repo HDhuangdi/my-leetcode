@@ -1,4 +1,4 @@
-// 使用dp数组
+// 使用dp table
 
 var canJump = function (nums) {
   let dp = [];
