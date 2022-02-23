@@ -1,3 +1,5 @@
+// 贪心法
+
 var maxProfit = function (prices) {
   let dp = [0];
   for (let i = 1; i < prices.length; i++) {
